@@ -98,29 +98,28 @@
   <div id="explosion"></div>
 
   <script>
-    const targetDate = new Date("2026-01-13T00:00:00+09:00");
-    const startDate = new Date("2025-12-16T00:00:00+09:00");
-    const totalDuration = targetDate - startDate;
-    const needle = document.getElementById("needle");
-    const explosion = document.getElementById("explosion");
+   const targetDate = new Date("2026-01-13T00:00:00+09:00");
+const startDate = new Date("2025-12-16T00:00:00+09:00");
+const totalDuration = targetDate - startDate;
+const needle = document.getElementById("needle");
+const explosion = document.getElementById("explosion");
 
-    function updateNeedle() {
-      const now = new Date();
-      const elapsed = now - startDate;
-      const percent = Math.min(1, Math.max(0, elapsed / totalDuration));
-      const baseAngle = percent * 270 - 135;
-      const jitter = (Math.random() - 0.5) * 4;
+function updateNeedle() {
+  const now = new Date(new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" }));
+  const elapsed = now - startDate;
+  const percent = Math.min(1, Math.max(0, elapsed / totalDuration));
+  const baseAngle = percent * 270 - 135;
+  const jitter = (Math.random() - 0.5) * 4;
 
-      needle.style.transform = `rotate(${baseAngle + jitter}deg)`;
+  needle.style.transform = `rotate(${baseAngle + jitter}deg)`;
 
-      if (percent >= 1 && !window._alreadyExploded) {
-        window._alreadyExploded = true;
-        explosion.style.display = "block";
-        explosion.style.animation = "flashBang 0.5s ease-in-out";
-
-        setTimeout(() => {
-          window.location.href = "確変アニメ.html";
-        }, 700);
+  if (percent >= 1 && !window._alreadyExploded) {
+    window._alreadyExploded = true;
+    explosion.style.display = "block";
+    explosion.style.animation = "flashBang 0.5s ease-in-out";
+    setTimeout(() => {
+      window.location.href = "確変アニメ.html";
+    }, 700);
       }
     }
 

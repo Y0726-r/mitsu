@@ -3,29 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>確変アニメ</title>
+  <title>確変アニメーション</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    video {
+      width: 100%;
+      max-width: 800px;
+      height: auto;
+    }
+  </style>
 </head>
-<body style="margin:0; background:black; display:flex; justify-content:center; align-items:center; height:100vh;">
-  <video id="fdVideo" autoplay muted playsinline style="width: 100%; height: auto;">
+<body>
+  <video id="fdVideo" autoplay muted playsinline>
     <source id="videoSource" src="" type="video/mp4">
-    お使いのブラウザは動画タグに対応していません
+    お使いのブラウザは動画タグに対応していません。
   </video>
 
   <script>
     const videos = [
       "https://raw.githubusercontent.com/Y0726-r/mitsu/main/download.mp4",
-      "https://Y0726-r.github.io/mitsu/fd_run2.mp4",
-      "https://Y0726-r.github.io/mitsu/fd_run3.mp4"
+      "https://raw.githubusercontent.com/Y0726-r/mitsu/main/download2.mp4",
+      "https://raw.githubusercontent.com/Y0726-r/mitsu/main/download3.mp4"
     ];
 
-    const randomIndex = Math.floor(Math.random() * videos.length);
-    const selectedVideo = videos[randomIndex];
+    const selected = videos[Math.floor(Math.random() * videos.length)];
+    const video = document.getElementById("fdVideo");
+    const source = document.getElementById("videoSource");
 
-    const videoSource = document.getElementById("videoSource");
-    videoSource.src = selectedVideo;
+    // 動画ファイルを設定して読み込み
+    source.src = selected;
+    video.load();
 
-    const videoElement = document.getElementById("fdVideo");
-    videoElement.load();
+    // 再生終了後にページ遷移（カウントダウンページへ）
+    video.onended = () => {
+      window.location.href = "index.html";
+    };
   </script>
 </body>
 </html>

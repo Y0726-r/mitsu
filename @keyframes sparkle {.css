@@ -1,0 +1,9 @@
+@keyframes sparkle {
+  0%   { filter: brightness(1); }
+  50%  { filter: brightness(1.4); }
+  100% { filter: brightness(1); }
+}
+
+#meter {
+  animation: sparkle 2s infinite;
+}

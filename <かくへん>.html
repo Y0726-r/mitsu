@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>確変アニメ</title>
+</head>
+<body style="margin:0; background:black; display:flex; justify-content:center; align-items:center; height:100vh;">
+  <video id="fdVideo" autoplay muted playsinline style="width: 100%; height: auto;">
+    <source id="videoSource" src="" type="video/mp4">
+    お使いのブラウザは動画タグに対応していません
+  </video>
+
+  <script>
+    const videos = [
+      "https://raw.githubusercontent.com/Y0726-r/mitsu/main/download.mp4",
+      "https://Y0726-r.github.io/mitsu/fd_run2.mp4",
+      "https://Y0726-r.github.io/mitsu/fd_run3.mp4"
+    ];
+
+    const randomIndex = Math.floor(Math.random() * videos.length);
+    const selectedVideo = videos[randomIndex];
+
+    const videoSource = document.getElementById("videoSource");
+    videoSource.src = selectedVideo;
+
+    const videoElement = document.getElementById("fdVideo");
+    videoElement.load();
+  </script>
+</body>
+</html>

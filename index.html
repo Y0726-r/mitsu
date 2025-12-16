@@ -92,10 +92,19 @@
     const needleWrapper = document.getElementById("needle-wrapper");
 
     function updateNeedle() {
-      const now = new Date();
-      const elapsed = now - startDate;
-      const percent = Math.min(1, Math.max(0, elapsed / totalDuration));
-      const angle = percent * 270 - 135;
+  const now = new Date();
+  const elapsed = now - startDate;
+  const percent = Math.min(1, Math.max(0, elapsed / totalDuration));
+  const baseAngle = percent * 270 - 135;
+
+ const jitter = (Math.random() - 0.5) * 4; // -2〜+2度
+  needleWrapper.style.transform = `rotate(${baseAngle + jitter}deg)`;
+
+  if (percent >= 1) {
+    window.location.href = "congrats.html";
+  }
+}
+
       needleWrapper.style.transform = `rotate(${angle}deg)`;
 
       if (percent >= 1) {

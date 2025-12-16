@@ -6,7 +6,7 @@
   <title>確変カウントダウン</title>
   <style>
     body {
-      background: url('https://drive.google.com/file/d/1zcGjvB1Lxt6KQwOZSh0RH8C5hXUsKSSc/view?usp=sharing') no-repeat center center fixed;
+      background: url('https://drive.google.com/uc?export=view&id=1zcGjvB1Lxt6KQwOZSh0RH8C5hXUsKSSc') no-repeat center center fixed;
       background-size: cover;
       color: #191970;
       font-family: 'Courier New', Courier, monospace;
@@ -19,30 +19,38 @@
       text-shadow: 1px 1px 3px black;
       overflow: hidden;
     }
+
     h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
     }
+
     #meter {
-      width: 480px;
-      height: 240px;
-      background: url('https://gemini.google.com/share/83740fa0c0e0') no-repeat center center;
+      width: 680px;
+      height: 440px;
+      background: url('https://i.imgur.com/sCrRE8I.png') no-repeat center center;
       background-size: contain;
       position: relative;
       margin-bottom: 2rem;
     }
+
+    @keyframes shake {
+      0%   { transform: rotate(-2deg); }
+      50%  { transform: rotate(2deg); }
+      100% { transform: rotate(-2deg); }
+    }
+
     #needle {
       width: 4px;
-      height: 100px;
+      height: 160px;
       background: red;
       position: absolute;
-      bottom: 70px;
-      left: 240px;
+      bottom: 60px;
+      left: calc(50% - 2px); /* 中心 */
       transform-origin: bottom center;
-      transform: rotate(0deg);
-      transition: transform 0.8s ease-in-out;
       z-index: 10;
     }
+
     .subtitle, .condition {
       font-size: 1.2rem;
       background: rgba(0, 0, 0, 0.5);
@@ -51,6 +59,7 @@
       color: #ccc;
       margin-bottom: 1rem;
     }
+
     .footer {
       position: absolute;
       bottom: 10px;
@@ -69,21 +78,28 @@
   <div class="footer">Presented by よめぴりか inc.</div>
 
   <script>
-    const targetDate = new Date("2026-01-21T11:00:00+09:00");
+    const targetDate = new Date("2026-01-13T00:00:00+09:00"); // 確変日（1/13）
     const startDate = new Date("2025-12-16T00:00:00+09:00");
-    const totalDuration = targetDate - startDate;
     const needle = document.getElementById("needle");
+    const totalDuration = targetDate - startDate;
 
-    function updateMeter() {
+    function updateNeedle() {
       const now = new Date();
       const elapsed = now - startDate;
+
       const percent = Math.min(1, Math.max(0, elapsed / totalDuration));
-      const angle = percent * 180;
+      const angle = percent * 270 - 135;
+
       needle.style.transform = `rotate(${angle}deg)`;
+
+      // 確変を超えたらページ遷移
+      if (percent >= 1) {
+        window.location.href = "congrats.html";
+      }
     }
 
-    setInterval(updateMeter, 1000);
-    updateMeter();
+    setInterval(updateNeedle, 1000);
+    updateNeedle();
   </script>
 </body>
 </html>

@@ -29,20 +29,23 @@
   <h1>🎉 確変突入 🎉</h1>
   <p>目標達成おめでとう！FDが待っている！</p>
 
-  <!-- デバッグ用に controls も一旦つけておく -->
+  <!-- 🎧 動作確認用：確実に鳴る音（外部OK・再生可） -->
+  <!-- 後で ↓ のURLを みつきのDrive直リンクに差し替えたらFD音になる -->
   <audio
     id="bgm"
-    src="https://drive.google.com/uc?export=download&id=1k3AFicSRtPeDrS05KVAU5MRp_0o4DsQA"
+    src="https://interactive-examples.mdn.mozilla.net/media/examples/t-rex-roar.mp3"
     muted
-    controls
+    preload="auto"
+    loop
   ></audio>
 
   <script>
-    // どこか1回タップされた瞬間に音ON（1回だけ）
-    document.addEventListener('click', () => {
-      const audio = document.getElementById('bgm');
-      audio.muted = false;
-      audio.play().catch(err => console.log('再生エラー:', err));
+    // 🔥 背景クリックで再生OK（ブラウザ規制突破の許可動作）
+    document.addEventListener("click", () => {
+      const audio = document.getElementById("bgm");
+      audio.muted = false; // ミュート解除
+      audio.volume = 1.0;  // ボリュームMAX
+      audio.play();        // 再生！
     }, { once: true });
   </script>
 </body>

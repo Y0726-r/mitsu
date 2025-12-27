@@ -29,22 +29,20 @@
   <h1>🎉 確変突入 🎉</h1>
   <p>目標達成おめでとう！FDが待っている！</p>
 
-  <!-- 🎧 まずは無音で準備させとく -->
+  <!-- デバッグ用に controls も一旦つけておく -->
   <audio
     id="bgm"
     src="https://drive.google.com/uc?export=download&id=1k3AFicSRtPeDrS05KVAU5MRp_0o4DsQA"
     muted
-    preload="auto"
-    loop
+    controls
   ></audio>
 
   <script>
-    // 🔥 クリックで「ミュート解除 → 音量設定 → 再生」
+    // どこか1回タップされた瞬間に音ON（1回だけ）
     document.addEventListener('click', () => {
       const audio = document.getElementById('bgm');
       audio.muted = false;
-      audio.volume = 1.0; // ← これ大事！音量0扱い回避
-      audio.play().catch(err => console.log("再生エラー:", err));
+      audio.play().catch(err => console.log('再生エラー:', err));
     }, { once: true });
   </script>
 </body>

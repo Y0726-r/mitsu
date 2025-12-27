@@ -105,23 +105,23 @@ const needle = document.getElementById("needle");
 const explosion = document.getElementById("explosion");
 
 function updateNeedle() {
-  const percent = 1; // ← これだけでOK（他は消す）
-
+  const now = new Date(new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" }));
+  const elapsed = now - startDate;
+  const percent = Math.min(1, Math.max(0, elapsed / totalDuration));
   const baseAngle = percent * 270 - 135;
-  const jitter = 0; // 揺れなくてOK
+  const jitter = (Math.random() - 0.5) * 4;
 
   needle.style.transform = `rotate(${baseAngle + jitter}deg)`;
 
   if (percent >= 1 && !window._alreadyExploded) {
-    console.log("GO!! kakuhen_animation.html に飛ぶはず！");
     window._alreadyExploded = true;
     explosion.style.display = "block";
     explosion.style.animation = "flashBang 0.5s ease-in-out";
     setTimeout(() => {
       window.location.href = "kakuhen_animation.html";
     }, 700);
-  }
-}
+      }
+    }
 
     setInterval(updateNeedle, 100);
     updateNeedle();

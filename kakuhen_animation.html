@@ -29,16 +29,16 @@
   <h1>🎉 確変突入 🎉</h1>
   <p>目標達成おめでとう！FDが待っている！</p>
 
-  <!-- 🔊 音声：まずミュート再生で突破 → JSで解除 -->
-  <audio id="bgm" src="https://www.dropbox.com/s/xxxxx/engine.mp3?raw=1" autoplay muted></audio>
+  <!-- 🔊 Google Drive直リンク（タップで鳴る版） -->
+  <audio id="bgm" src="https://drive.google.com/uc?export=download&id=1k3AFicSRtPeDrS05KVAU5MRp_0o4DsQA" muted></audio>
 
-<script>
-  window.addEventListener('click', () => {
-    const audio = document.getElementById('bgm');
-    audio.muted = false;
-    audio.play();
-  });
+  <script>
+    // 👇 画面タップで爆音ドンッ！（自動再生対策にゃ）
+    window.addEventListener('click', () => {
+      const audio = document.getElementById('bgm');
+      audio.muted = false;
+      audio.play().catch(err => console.log("再生エラー:", err));
+    });
   </script>
-
 </body>
 </html>

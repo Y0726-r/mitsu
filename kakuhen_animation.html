@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>おめでとう！確変突入！</title>
 
+  <!-- 💛 背景・点滅・文字サイズ → ぜんぶこの中 -->
   <style>
     body {
       background: black;
@@ -31,6 +32,7 @@
   <h1>🎉 確変突入 🎉</h1>
   <p>目標達成おめでとう！FDが待っている！</p>
 
+  <!-- 🎧 テスト用音源（鳴るやつ）→ あとでFD音に差し替え -->
   <audio
     id="bgm"
     src="https://interactive-examples.mdn.mozilla.net/media/examples/t-rex-roar.mp3"
@@ -41,6 +43,7 @@
   ></audio>
 
   <script>
+    // 🔥 クリックで音ON（ブラウザ制限突破）
     document.addEventListener("click", () => {
       const audio = document.getElementById("bgm");
       audio.muted = false;

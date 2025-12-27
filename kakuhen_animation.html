@@ -30,17 +30,14 @@
   <p>目標達成おめでとう！FDが待っている！</p>
 
   <!-- 🔊 音声：まずミュート再生で突破 → JSで解除 -->
-  <audio id="bgm" src="https://github.com/Y0726-r/mitsu/raw/refs/heads/main/%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3%E9%9F%B3.mp3" autoplay muted></audio>
+  <audio id="bgm" src="https://www.dropbox.com/s/xxxxx/engine.mp3?raw=1" autoplay muted></audio>
 
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const audio = document.getElementById('bgm');
-      // 音声読み込み終わったらミュート解除＆再生
-      audio.addEventListener('canplaythrough', () => {
-        audio.muted = false;
-        audio.play().catch(err => console.log("再生エラー:", err));
-      });
-    });
+<script>
+  window.addEventListener('click', () => {
+    const audio = document.getElementById('bgm');
+    audio.muted = false;
+    audio.play();
+  });
   </script>
 
 </body>

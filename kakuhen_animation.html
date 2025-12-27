@@ -1,43 +1,51 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  </head>
+  <meta charset="UTF-8" />
+  <title>おめでとう！確変突入！</title>
+  <style>
+    body {
+      background: black;
+      color: gold;
+      font-family: 'Arial Black', sans-serif;
+      text-align: center;
+      padding-top: 20vh;
+      animation: flash 1s infinite;
+    }
+
+    h1 {
+      font-size: 4rem;
+      margin-bottom: 2rem;
+    }
+
+    @keyframes flash {
+      0% { background: black; }
+      50% { background: red; }
+      100% { background: black; }
+    }
+  </style>
+</head>
 <body>
-  <h1>🎉 確変突入 🎉</h1>
-  <p>目標達成おめでとう！FDが待っている！</p>
+  <h1>🎉 確変突入 🎉</h1>
+  <p>目標達成おめでとう！FDが待っている！</p>
 
-    <audio
-    id="bgm"
-    src="【https://drive.google.com/file/d/1k3AFicSRtPeDrS05KVAU5MRp_0o4DsQA/view?usp=sharing】"
-    muted
-    preload="auto"
-    loop
-  ></audio>
+  <!-- 🎧 まずは無音で準備させとく -->
+  <audio
+    id="bgm"
+    src="https://drive.google.com/uc?export=download&id=1k3AFicSRtPeDrS05KVAU5MRp_0o4DsQA"
+    muted
+    preload="auto"
+    loop
+  ></audio>
 
-  <script>
-    // 🔥 クリックで「ミュート解除 → 音量設定 → 再生」
-    document.addEventListener('click', () => {
-      const audio = document.getElementById('bgm');
-      
-      // 1. ミュート解除 (Autoplay Policyをクリアするため)
-      audio.muted = false;
-      
-      // 2. 音量設定
-      audio.volume = 1.0; 
-      
-      // 3. 再生を試行
-      audio.play()
-        .then(() => {
-          console.log("再生成功！");
-        })
-        .catch(err => {
-          // エラーメッセージを確認して原因を特定
-          console.error("再生エラー:", err);
-          
-          // ロード状態も確認してみる
-          console.log("現在のメディアの状態:", audio.readyState); 
-        });
-    }, { once: true });
-  </script>
+  <script>
+    // 🔥 クリックで「ミュート解除 → 音量設定 → 再生」
+    document.addEventListener('click', () => {
+      const audio = document.getElementById('bgm');
+      audio.muted = false;
+      audio.volume = 1.0; // ← これ大事！音量0扱い回避
+      audio.play().catch(err => console.log("再生エラー:", err));
+    }, { once: true });
+  </script>
 </body>
 </html>
